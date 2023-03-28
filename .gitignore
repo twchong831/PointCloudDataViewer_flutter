@@ -1,0 +1,17 @@
+.DS_Store
+.vscode/
+android/
+android/app android/build.gradle android/gradle android/gradle.properties android/gradlew android/gradlew.bat android/local.properties android/pointcloud_data_viewer_android.iml android/settings.gradle
+build/
+macos/
+web/
+web/favicon.png web/icons web/index.html web/manifest.json
+macos/Flutter macos/Podfile macos/Podfile.lock macos/Pods macos/Runner macos/Runner.xcodeproj macos/Runner.xcworkspace
+linux/
+linux/CMakeLists.txt linux/flutter linux/main.cc linux/my_application.cc linux/my_application.h
+PCD/
+ios/
+ios/Flutter ios/Podfile ios/Runner ios/Runner.xcodeproj ios/Runner.xcworkspace
+windows/CMakeLists.txt windows/flutter windows/runner
+windows/
+log/
