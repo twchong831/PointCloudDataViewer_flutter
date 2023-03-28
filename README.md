@@ -7,6 +7,8 @@ This Flutter project is for Point Cloud Data(PCD) Visualizer.
 
 - [point cloud library](https://pointclouds.org/)
 - [PCD format](https://pointclouds.org/documentation/tutorials/pcd_file_format.html)
+  - only ASCii
+  - XYZ
   - XYZRGB
 
 ## used package list
