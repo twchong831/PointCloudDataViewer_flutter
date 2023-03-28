@@ -1,11 +1,13 @@
-# pointcloud_data_viewer
+# PointCloudData Viewer
 
-A new Flutter project for Point Cloud Data Visualizer.
+My first Flutter application was done!
+This Flutter project is for Point Cloud Data(PCD) Visualizer.
 
 ## Point Cloud Data file format
 
 - [point cloud library](https://pointclouds.org/)
 - [PCD format](https://pointclouds.org/documentation/tutorials/pcd_file_format.html)
+  - XYZRGB
 
 ## used package list
 

@@ -259,7 +259,8 @@ class _ViewScreenState extends State<ViewScreen> {
         child: AppBar(
           title: Text(_setTitle()),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back_ios,
+                size: MediaQuery.of(context).size.height / 35),
             onPressed: () {
               // set navigator for backward and send DiTreDiController value
               Navigator.pop(context, widget._ditreControl);

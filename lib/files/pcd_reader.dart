@@ -1,6 +1,7 @@
 // import 'package:ditredi/ditredi.dart';
 import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pointcloud_data_viewer/files/filesystem.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
@@ -32,8 +33,6 @@ class PCDReader {
   late String path;
   List<Point3D> gPointCloud = [];
 
-  final String _dumPath =
-      '/Users/twchong/workspace/myGithub/flutter_app/app_PointCloudDataViewer/pointcloud_data_viewer/pcd';
   FileSystem mFiles = FileSystem();
 
   List<String> gDumStr = [];
@@ -186,9 +185,6 @@ class PCDReader {
   }
 
   Future<List<Point3D>> read(String filename) async {
-    // List<String> gStringStr = [];
-    // gStringStr.clear();
-
     // path parse
     List sp1 = filename.split('/');
     if (sp1.length > 1) // path + file name
@@ -210,7 +206,7 @@ class PCDReader {
     if (gDumStr.isNotEmpty) {
       // check point type
       PCDField field = checkField(gDumStr);
-      int size = checkNumOfPoints(gDumStr);
+      // int size = checkNumOfPoints(gDumStr);
       // print('point size $size');
       if (gPointCloud.isNotEmpty) gPointCloud.clear();
       gPointCloud = parsePointCloud(list: gDumStr, field: field);
@@ -220,7 +216,8 @@ class PCDReader {
 
   void setBasePath() {
     if (path.isEmpty) {
-      path = _dumPath;
+      path = getApplicationDocumentsDirectory().toString();
+      print('using base path $path');
     }
   }
 }

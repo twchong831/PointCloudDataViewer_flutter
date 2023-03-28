@@ -91,8 +91,10 @@ class _FileSelectScreenState extends State<FileSelectScreen> {
       if (widget.fileCofig!.getFileList.isNotEmpty) {
         listPcdFiles = widget.fileCofig!.getFileList;
         dropDownList = generateFileListMenu(listPcdFiles);
-        checkedListUpdated = true;
         selPcdFile = listPcdFiles[0];
+        if (selPcdFile != strNone) {
+          checkedListUpdated = true;
+        }
       }
     });
   }
@@ -118,7 +120,9 @@ class _FileSelectScreenState extends State<FileSelectScreen> {
               ),
               child: ElevatedButton(
                 onPressed: () async {
+                  // clear before pcd file lists
                   if (listPcdFiles.isNotEmpty) listPcdFiles.clear();
+                  // select pcd directorty using FilePicker
                   String? selectedDirectory =
                       await FilePicker.platform.getDirectoryPath();
                   if (selectedDirectory == null) {
