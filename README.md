@@ -109,5 +109,5 @@ android.enableJetifier=true
 ### android
 
 | start                                 | file selet                              | visualization                                    |
-| ------------------------------------- | --------------------------------------- | ------------------------------------------------ |
-| ![](./image/android/android_base.png) | ![](./image/android/android_select.png) | ![](./imgae/../image/android/android_viewer.png) |
+| :-------------------------------------: | :---------------------------------------: | :------------------------------------------------: |
+| <img src="./image/android_image/android_base.png" width="50%" heigth="50%"> | <img src="./image/android_image/android_select.png" width="50%" heigth="50%">  | <img src="./image/android_image/android_viewer.png" width="45%" heigth="45%">  |
