@@ -13,11 +13,11 @@ This Flutter project is for Point Cloud Data(PCD) Visualizer.
 
 ## Platform
 
-|         | windows               | MacOS              | Android              | iOS                   |
-| ------- | --------------------- | ------------------ | -------------------- | --------------------- |
+|         | windows               | MacOS              | Android            | iOS                   |
+| ------- | --------------------- | ------------------ | ------------------ | --------------------- |
 | support | :black_square_button: | :white_check_mark: | :white_check_mark: | :black_square_button: |
 
-## used package list
+## Package List
 
 1. [ditredi](https://pub.dev/packages/ditredi)
    1. [vector_math](https://pub.dev/packages/vector_math)
@@ -35,7 +35,7 @@ flutter clean project
 flutter pub get
 ```
 
-### permission
+### Permission
 
 #### macOS
 
@@ -49,7 +49,7 @@ flutter pub get
 <key>com.apple.security.files.user-selected.read-write</key>
 ```
 
-#### android
+#### Android
 
 ```bash
 # /[project-path]/android/gradle.properties
@@ -74,40 +74,40 @@ android.enableJetifier=true
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 ```
 
-## result
+## RESULT
 
-- in Mac OS
+### MacOS
 
-### File Select
+#### File Select
 
 <img src="./image/fileSelect.gif" width="50%" heigth="50%">
 
-### Basic Visualization
+#### Basic Visualization
 
 <img src="./image/visual_basic.gif" width="50%" heigth="50%">
 
-#### Play PCD Files
+##### Play PCD Files
 
 <img src="./image/visual_play.gif" width="50%" heigth="50%">
 
-### Point Size
+#### Point Size
 
 <img src="./image/pointSize_change.gif" width="50%" heigth="50%">
 
-### Change Viewer Configuration
+#### Change Viewer Configuration
 
-#### Grid & Point Size
+##### Grid & Point Size
 
 <img src="./image/grid.gif" width="50%" heigth="50%">
 
 <img src="./image/gird_point_size.gif" width="50%" heigth="50%">
 
-#### Background Color
+##### Background Color
 
 <img src="./image/backgroundColor.gif" width="50%" heigth="50%">
 
-### android
+### Android
 
-| start                                 | file selet                              | visualization                                    |
-| :-------------------------------------: | :---------------------------------------: | :------------------------------------------------: |
-| <img src="./image/android_image/android_base.png" width="50%" heigth="50%"> | <img src="./image/android_image/android_select.png" width="50%" heigth="50%">  | <img src="./image/android_image/android_viewer.png" width="45%" heigth="45%">  |
+|                                    start                                    |                                  file selet                                   |                                 visualization                                 |
+| :-------------------------------------------------------------------------: | :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: |
+| <img src="./image/android_image/android_base.png" width="50%" heigth="50%"> | <img src="./image/android_image/android_select.png" width="50%" heigth="50%"> | <img src="./image/android_image/android_viewer.png" width="45%" heigth="45%"> |
