@@ -35,6 +35,7 @@ dependencies:
   sidebarx: ^0.15.0
   tab_container: ^2.0.0
   flutter_colorpicker: ^1.0.3
+  permission_handler: ^10.2.0
 
   flutter:
     sdk: flutter

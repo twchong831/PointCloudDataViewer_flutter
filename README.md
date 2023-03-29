@@ -11,6 +11,12 @@ This Flutter project is for Point Cloud Data(PCD) Visualizer.
   - XYZ
   - XYZRGB
 
+## Platform
+
+|         | windows               | MacOS              | Android              | iOS                   |
+| ------- | --------------------- | ------------------ | -------------------- | --------------------- |
+| support | :black_square_button: | :white_check_mark: | :white_check_mark: | :black_square_button: |
+
 ## used package list
 
 1. [ditredi](https://pub.dev/packages/ditredi)
@@ -20,12 +26,52 @@ This Flutter project is for Point Cloud Data(PCD) Visualizer.
 4. [sidebarx](https://pub.dev/packages/sidebarx)
 5. [tab_container](https://pub.dev/packages/tab_container)
 6. [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker)
+7. [permission_handler](https://pub.dev/packages/permission_handler/example)
 
 ## Rebuild
 
 ```bash
 flutter clean project
 flutter pub get
+```
+
+### permission
+
+#### macOS
+
+```bash
+/[project-path]/macos/Runner/DebugProfile.entitlements
+```
+
+- add permision : file read/write
+
+```json
+<key>com.apple.security.files.user-selected.read-write</key>
+```
+
+#### android
+
+```bash
+# /[project-path]/android/gradle.properties
+# add this command
+android.useAndroidX=true
+android.enableJetifier=true
+#============================================
+```
+
+```bash
+/[project-path]/android/app/src/debug/AndroidManifest.xml
+```
+
+- add permision : file read/write
+
+```json
+    <!-- Permissions options for the `storage` group -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <!-- Permissions options for the `manage external storage` group -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 ```
 
 ## result
@@ -59,3 +105,9 @@ flutter pub get
 #### Background Color
 
 <img src="./image/backgroundColor.gif" width="50%" heigth="50%">
+
+### android
+
+| start                                 | file selet                              | visualization                                    |
+| ------------------------------------- | --------------------------------------- | ------------------------------------------------ |
+| ![](./image/android/android_base.png) | ![](./image/android/android_select.png) | ![](./imgae/../image/android/android_viewer.png) |

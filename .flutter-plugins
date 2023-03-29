@@ -6,3 +6,7 @@ path_provider_android=/Users/twchong/.pub-cache/hosted/pub.dev/path_provider_and
 path_provider_foundation=/Users/twchong/.pub-cache/hosted/pub.dev/path_provider_foundation-2.1.2/
 path_provider_linux=/Users/twchong/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.9/
 path_provider_windows=/Users/twchong/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.4/
+permission_handler=/Users/twchong/.pub-cache/hosted/pub.dev/permission_handler-10.2.0/
+permission_handler_android=/Users/twchong/.pub-cache/hosted/pub.dev/permission_handler_android-10.2.0/
+permission_handler_apple=/Users/twchong/.pub-cache/hosted/pub.dev/permission_handler_apple-9.0.8/
+permission_handler_windows=/Users/twchong/.pub-cache/hosted/pub.dev/permission_handler_windows-0.1.2/

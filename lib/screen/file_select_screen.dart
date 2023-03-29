@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:ditredi/ditredi.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:pointcloud_data_viewer/ditredi_/viewer_config_controller.dart';
 import 'package:pointcloud_data_viewer/file_select_sceen_config.dart';
 import 'package:pointcloud_data_viewer/files/pcd_reader.dart';
@@ -84,6 +85,31 @@ class _FileSelectScreenState extends State<FileSelectScreen> {
     return l;
   }
 
+  // permission
+  Future<bool> _checkPermission() async {
+    PermissionStatus storagePermissionStatus =
+        await Permission.manageExternalStorage.status;
+    if (storagePermissionStatus == PermissionStatus.granted) {
+      print('[_checkPermission]Storage permission is granted.');
+      return true;
+    } else {
+      print('[_checkPermission]Storage permission is not granted.');
+      return false;
+    }
+  }
+
+  Future<bool> _requestPermission() async {
+    // var result = await Permission.storage.request();
+    var result = await Permission.manageExternalStorage.request();
+    if (result == PermissionStatus.granted) {
+      print('[_requestPermission]Storage permission is granted.');
+      return true;
+    } else {
+      print('[_requestPermission]Storage permission is not granted.');
+      return false;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -122,6 +148,16 @@ class _FileSelectScreenState extends State<FileSelectScreen> {
                 onPressed: () async {
                   // clear before pcd file lists
                   if (listPcdFiles.isNotEmpty) listPcdFiles.clear();
+
+                  // check permission
+                  if (Platform.isAndroid) {
+                    bool checkedPer = await _checkPermission();
+                    if (!checkedPer) {
+                      bool result = await _requestPermission();
+                      print('permisson result : $result');
+                    }
+                  }
+
                   // select pcd directorty using FilePicker
                   String? selectedDirectory =
                       await FilePicker.platform.getDirectoryPath();

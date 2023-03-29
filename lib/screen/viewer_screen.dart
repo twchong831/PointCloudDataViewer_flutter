@@ -86,11 +86,11 @@ class _ViewScreenState extends State<ViewScreen> {
       visualObjs = [
         Grid3D(
             Point(
-              widget.viewerControl.getGridRangeXEnd,
+              -widget.viewerControl.getGridRangeXStart,
               widget.viewerControl.getGridRangeYEnd,
             ),
             Point(
-              widget.viewerControl.getGridRangeXStart,
+              -widget.viewerControl.getGridRangeXEnd,
               widget.viewerControl.getGridRangeYStart,
             ),
             1,
