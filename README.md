@@ -78,11 +78,11 @@ android.enableJetifier=true
 
 ### MacOS
 
-#### File Select
+#### Directory & File Select
 
 <img src="./image/fileSelect.gif" width="50%" heigth="50%">
 
-#### Basic Visualization
+#### 3D Visualization
 
 <img src="./image/visual_basic.gif" width="50%" heigth="50%">
 
