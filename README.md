@@ -98,9 +98,7 @@ android.enableJetifier=true
 
 ##### Grid & Point Size
 
-<img src="./image/grid.gif" width="50%" heigth="50%">
-
-<img src="./image/gird_point_size.gif" width="50%" heigth="50%">
+<img src="./image/grid.gif" width="50%" heigth="50%"><img src="./image/gird_point_size.gif" width="50%" heigth="50%">
 
 ##### Background Color
 
