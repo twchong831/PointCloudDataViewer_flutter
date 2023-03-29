@@ -1,9 +1,9 @@
-# PointCloudData Viewer
+# 1. PointCloudData Viewer
 
 My first Flutter application was done!
 This Flutter project is for Point Cloud Data(PCD) Visualizer.
 
-## Point Cloud Data file format
+## 1.1. Point Cloud Data file format
 
 - [point cloud library](https://pointclouds.org/)
 - [PCD format](https://pointclouds.org/documentation/tutorials/pcd_file_format.html)
@@ -11,13 +11,13 @@ This Flutter project is for Point Cloud Data(PCD) Visualizer.
   - XYZ
   - XYZRGB
 
-## Platform
+## 1.2. Platform
 
 |         | windows               | MacOS              | Android            | iOS                   |
 | ------- | --------------------- | ------------------ | ------------------ | --------------------- |
 | support | :black_square_button: | :white_check_mark: | :white_check_mark: | :black_square_button: |
 
-## Package List
+## 1.3. Package List
 
 1. [ditredi](https://pub.dev/packages/ditredi)
    1. [vector_math](https://pub.dev/packages/vector_math)
@@ -28,16 +28,16 @@ This Flutter project is for Point Cloud Data(PCD) Visualizer.
 6. [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker)
 7. [permission_handler](https://pub.dev/packages/permission_handler/example)
 
-## Rebuild
+## 1.4. Rebuild
 
 ```bash
 flutter clean project
 flutter pub get
 ```
 
-### Permission
+### 1.4.1. Permission
 
-#### macOS
+#### 1.4.1.1. macOS
 
 ```bash
 /[project-path]/macos/Runner/DebugProfile.entitlements
@@ -49,7 +49,7 @@ flutter pub get
 <key>com.apple.security.files.user-selected.read-write</key>
 ```
 
-#### Android
+#### 1.4.1.2. Android
 
 ```bash
 # /[project-path]/android/gradle.properties
@@ -74,37 +74,37 @@ android.enableJetifier=true
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 ```
 
-## RESULT
+## 1.5. RESULT
 
-### MacOS
+### 1.5.1. MacOS
 
-#### Directory & File Select
+#### 1.5.1.1. Directory & File Select
 
 <img src="./image/fileSelect.gif" width="50%" heigth="50%">
 
-#### 3D Visualization
+#### 1.5.1.2. 3D Visualization
 
 <img src="./image/visual_basic.gif" width="50%" heigth="50%">
 
-##### Play PCD Files
+##### 1.5.1.2.1. Play PCD Files
 
 <img src="./image/visual_play.gif" width="50%" heigth="50%">
 
-#### Point Size
+#### 1.5.1.3. Point Size
 
 <img src="./image/pointSize_change.gif" width="50%" heigth="50%">
 
-#### Change Viewer Configuration
+#### 1.5.1.4. Change Viewer Configuration
 
-##### Grid & Point Size
+##### 1.5.1.4.1. Grid & Point Size
 
 <img src="./image/grid.gif" width="50%" heigth="50%"><img src="./image/gird_point_size.gif" width="50%" heigth="50%">
 
-##### Background Color
+##### 1.5.1.4.2. Background Color
 
 <img src="./image/backgroundColor.gif" width="50%" heigth="50%">
 
-### Android
+### 1.5.2. Android
 
 |                                    start                                    |                                  file selet                                   |                                 visualization                                 |
 | :-------------------------------------------------------------------------: | :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: |
