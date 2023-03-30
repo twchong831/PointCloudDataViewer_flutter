@@ -1,7 +1,8 @@
 # 1. PointCloudData Viewer
 
 My first Flutter application was done!
-This Flutter project is for Point Cloud Data(PCD) Visualizer.
+
+This Flutter project is Point Cloud Data(PCD) Visualizer.
 
 ## 1.1. Point Cloud Data file format
 
