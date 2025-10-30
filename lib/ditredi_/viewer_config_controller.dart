@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Holds viewer configuration (grid ranges, point size, background color)
+/// and notifies listeners on updates.
 class ViewerConfigController extends ChangeNotifier {
   RangeValues _gridRangeX;
   RangeValues _gridRangeY;
@@ -20,6 +22,7 @@ class ViewerConfigController extends ChangeNotifier {
   final RangeValues maxRangeX = const RangeValues(-50.0, 50.0);
   final RangeValues maxRangeY = const RangeValues(0, 100.0);
 
+  /// Updates X-axis grid range with clamping to max bounds.
   void updateGridRangeX(RangeValues range) {
     _gridRangeX = range;
 
@@ -34,6 +37,7 @@ class ViewerConfigController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Updates Y-axis grid range with clamping to max bounds.
   void updateGridRangeY(RangeValues range) {
     _gridRangeY = range;
     if (_gridRangeY.start < maxRangeY.start) {
@@ -46,6 +50,7 @@ class ViewerConfigController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Updates point size and enforces valid range [1.0, 5.0].
   void updatePointSize(double size) {
     _pointSize = size;
     if (_pointSize <= 0) _pointSize = 1.0;
@@ -54,6 +59,7 @@ class ViewerConfigController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Updates background color for the viewer.
   void updateBackgroundColor(Color color) {
     _backgroundColor = color;
     notifyListeners();
@@ -70,10 +76,12 @@ class ViewerConfigController extends ChangeNotifier {
   RangeValues get getMaxRangeX => maxRangeX;
   RangeValues get getMaxRangeY => maxRangeY;
 
+  /// Divisions used to render X-axis slider tick count.
   int rangeXdivision() {
     return (maxRangeX.end - maxRangeX.start) ~/ 5;
   }
 
+  /// Divisions used to render Y-axis slider tick count.
   int rangeYdivision() {
     return (maxRangeY.end - maxRangeY.start) ~/ 5;
   }

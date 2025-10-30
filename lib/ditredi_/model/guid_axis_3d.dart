@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart';
 import 'package:flutter/src/material/colors.dart' as colorcode;
 
+/// XYZ guide axes as colored lines (X=red, Y=green, Z=blue).
 class GuideAxis3D extends Group3D {
   final double length;
   final double? lineWidth;
@@ -46,6 +47,7 @@ class GuideAxis3D extends Group3D {
   }
 }
 
+/// Generates axis-aligned lines centered at origin with RGB coloring.
 List<Model3D<Model3D<dynamic>>> _generateFigures(
     double length, double? thickness) {
   Vector3 st = Vector3(0, 0, 0);

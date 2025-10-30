@@ -72,10 +72,12 @@ bool _checkColor(Color? color) {
   return checked;
 }
 
+/// Mirrors the X coordinate to align with screen-space expectation.
 Vector3 inverseX(Vector3 coor) {
   return Vector3(-coor.x, coor.y, coor.z);
 }
 
+/// Maps raw point list into [Point3D] figures using optional overrides.
 List<Model3D<Model3D<dynamic>>> _generateFigures(
     List<Point3D> list3d, Vector3 position, Color? color, double? thickness) {
   return List.generate(

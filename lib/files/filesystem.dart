@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+/// Minimal file I/O helper for reading and writing text files line-by-line.
 class FileSystem {
   String filename = '';
   String bPath = '';
@@ -9,28 +10,31 @@ class FileSystem {
   //   required this.filename,
   // });
 
+  /// Sets the base directory path used for reading/writing.
   void setLocalPath(String path) {
     bPath = path;
   }
 
+  /// Sets the filename used within the base directory.
   void setFileName(String name) {
     filename = name;
   }
 
   void setPathName(String pathName) {}
 
+  /// Full file path for the configured base path and filename.
   File get filePath {
     return File('$bPath/$filename');
   }
 
-  // write file
+  /// Writes [value] as a string to the configured file.
   Future<File> write(var value) async {
     final file = filePath;
     // 파일 쓰기
     return file.writeAsString('$value');
   }
 
-  // read file
+  /// Reads file as a stream of lines (async).
   Future<Stream<String>> read() async {
     Stream<String> contents;
     final File file;
@@ -55,6 +59,7 @@ class FileSystem {
     return const Stream.empty();
   }
 
+  /// Reads file as a stream of lines (sync path, async content).
   Stream<String> readSync() {
     final File file = filePath;
 
@@ -76,6 +81,7 @@ class FileSystem {
     return const Stream.empty();
   }
 
+  /// Returns the configured base path.
   Future<String> getBasePath() async {
     return bPath;
   }

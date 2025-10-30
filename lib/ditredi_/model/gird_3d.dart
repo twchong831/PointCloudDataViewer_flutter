@@ -4,6 +4,7 @@ import 'package:ditredi/ditredi.dart';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart';
 
+/// Procedurally generated XY grid as line segments.
 class Grid3D extends Group3D {
   final Point max;
   final Point min;
@@ -11,6 +12,7 @@ class Grid3D extends Group3D {
   final Color? color;
   final double? lineWidth;
 
+  /// Creates a grid from [min] to [max] with a given [interval] and style.
   Grid3D(
     this.max,
     this.min,
@@ -63,6 +65,7 @@ class Grid3D extends Group3D {
   }
 }
 
+/// Generates grid lines spanning X and Y directions.
 List<Model3D<Model3D<dynamic>>> _generateFigures(
     Point max, Point min, int interval, Color? color, double? thickness) {
   int xSize = (max.x - min.x) ~/ interval;

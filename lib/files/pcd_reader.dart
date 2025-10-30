@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pointcloud_data_viewer/files/filesystem.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
+/// Index map for PCD header lines in the loaded text list.
 class PcdFormat {
   PcdFormat._();
 
@@ -22,6 +23,7 @@ class PcdFormat {
   static const int points = 11;
 }
 
+/// Supported PCD field layouts.
 enum PCDField {
   none,
   xyz,
@@ -29,6 +31,7 @@ enum PCDField {
   xyzhsv,
 }
 
+/// Reads PCD files and converts them into [Point3D] lists.
 class PCDReader {
   late String path;
   List<Point3D> gPointCloud = [];
@@ -41,8 +44,7 @@ class PCDReader {
     required this.path,
   });
 
-  // check pcd file field
-
+  /// Detects the point field layout from the header line (FIELDS ...).
   PCDField checkField(List<String> list) {
     List checkXyz = [false, false, false];
     bool checkRgb = false;
@@ -86,7 +88,7 @@ class PCDReader {
     return PCDField.none;
   }
 
-  // check total number of points
+  /// Parses the total number of points from the header if present.
   int checkNumOfPoints(List<String> list) {
     int size = 0;
     String num = list[PcdFormat.numOfPoints];
@@ -95,7 +97,10 @@ class PCDReader {
     return size;
   }
 
-  // get point cloud
+  /// Parses point lines into [Point3D]s.
+  ///
+  /// - xyzrgb: converts packed decimal RGB into ARGB hex (0xFFrrggbb)
+  /// - xyz: no color information (defaults to white)
   List<Point3D> parsePointCloud({
     required List<String> list,
     required PCDField field,
@@ -175,7 +180,7 @@ class PCDReader {
     return pointcloud;
   }
 
-  // read file & convert Stream<string> to List<String>
+  /// Reads the current file as lines and returns them as a list.
   Future<List<String>> _readFromFile({
     String file = '',
   }) async {
@@ -184,6 +189,7 @@ class PCDReader {
     return fileLines.toList();
   }
 
+  /// Loads a PCD file by name or full path and returns parsed points.
   Future<List<Point3D>> read(String filename) async {
     // path parse
     List sp1 = filename.split('/');
@@ -214,6 +220,7 @@ class PCDReader {
     return gPointCloud;
   }
 
+  /// Sets a default base path if none is specified.
   void setBasePath() {
     if (path.isEmpty) {
       path = getApplicationDocumentsDirectory().toString();

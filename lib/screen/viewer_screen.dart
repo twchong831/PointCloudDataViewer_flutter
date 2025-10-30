@@ -15,11 +15,19 @@ import 'package:sidebarx/sidebarx.dart';
 import 'package:vector_math/vector_math_64.dart';
 import 'package:flutter/material.dart' as colorcode;
 
+/// Data source of the viewer.
+///
+/// - `udp`: stream from network (future use)
+/// - `fileList`: play one or multiple PCD files
 enum ReadMode {
   udp,
   fileList,
 }
 
+/// Main screen that renders point clouds using DiTreDi.
+///
+/// Accepts optional networking params or a list of PCD file paths.
+/// Falls back to a default [DiTreDiController] tuned for this viewer.
 class ViewScreen extends StatefulWidget {
   final String? ip;
   final int? port;
@@ -49,12 +57,12 @@ class ViewScreen extends StatefulWidget {
 }
 
 class _ViewScreenState extends State<ViewScreen> {
-  // point cloud view config
+  /// Reader that loads and parses PCD files into [Point3D]s.
   PCDReader pcdReader = PCDReader(path: '');
-  // selected PCD file name
+  /// Currently selected PCD file path.
   String selectFile = '';
 
-  // timer for pcd files play
+  /// Timer to play a PCD file list like a sequence (≈30 FPS).
   late Timer mTimerPlay;
   bool gCheckedTimer = false;
   int gTimerCount = 0;
@@ -63,13 +71,13 @@ class _ViewScreenState extends State<ViewScreen> {
 
   List<Point3D> gPcloudReadPCD = [];
 
-  // painter for 3D visualization using ditredi
+  /// Custom painter (DiTreDi-based) used by [CustomPaint].
   DiTreDiModelPainterCustom? gModelPainter;
 
-  // set viewPoint Start
+  /// Initial logical bounds used to seed camera transform.
   final Aabb3 gBounds = Aabb3.minMax(Vector3(-10, 0, 0), Vector3(10, 15, 0));
 
-  // visualize target using ditredi
+  /// Base scene objects (grid, axes) plus the point cloud.
   List<Model3D<Model3D<dynamic>>> visualObjs = [
     Grid3D(const Point(10, 15), const Point(-10, 0), 1,
         lineWidth: 1, color: colorcode.Colors.white.withOpacity(0.6)),
@@ -78,7 +86,7 @@ class _ViewScreenState extends State<ViewScreen> {
 
   double gPointSize = 1.0;
 
-  // update point cloud
+  /// Rebuilds the scene with the latest point cloud and triggers repaint.
   void _updatePointCloud(List<Point3D> cloud) {
     if (mounted) {
       // gPcloud = cloud;
@@ -107,13 +115,13 @@ class _ViewScreenState extends State<ViewScreen> {
     }
   }
 
-  // load PCD files
+  /// Loads a single PCD file and updates the scene.
   void _loadPcdFile(String path) async {
     gPcloudReadPCD = await pcdReader.read(path);
     _updatePointCloud(gPcloudReadPCD);
   }
 
-  // private : play timer
+  /// Advances playback for a list of PCD files (called by timer).
   void _playTimer(Timer time) async {
     if (mounted) {
       if (gPcloudReadPCD.isNotEmpty) gPcloudReadPCD.clear();
@@ -127,7 +135,7 @@ class _ViewScreenState extends State<ViewScreen> {
     }
   }
 
-  // private : play timer and active this func.
+  /// Starts the playback timer (~33ms interval) once.
   void _timerActive() {
     if (!gCheckedTimer) {
       mTimerPlay = Timer.periodic(
@@ -138,7 +146,7 @@ class _ViewScreenState extends State<ViewScreen> {
     }
   }
 
-  // private : cancel timer
+  /// Cancels the playback timer if running.
   void _cancelTimer() {
     if (gCheckedTimer) {
       mTimerPlay.cancel();
@@ -146,7 +154,7 @@ class _ViewScreenState extends State<ViewScreen> {
     }
   }
 
-  // page init state FUNC.
+  /// Initializes data source mode and prepares the custom painter.
   @override
   void initState() {
     if (widget.ip != null && widget.port != null) {
@@ -174,7 +182,7 @@ class _ViewScreenState extends State<ViewScreen> {
     super.initState();
   }
 
-  // page dispose state FUNC[end].
+  /// Cleans up resources on exit (stop playback timer).
   @override
   void dispose() {
     if (readMode == ReadMode.fileList) {
@@ -183,7 +191,7 @@ class _ViewScreenState extends State<ViewScreen> {
     super.dispose();
   }
 
-  // set this page title
+  /// Returns an app bar title that reflects the current data source.
   String _setTitle() {
     String val = 'none';
     setState(() {
@@ -209,12 +217,14 @@ class _ViewScreenState extends State<ViewScreen> {
     return val;
   }
 
+  /// Increases the point size and refreshes the view.
   void increasePointSize() {
     gPointSize++;
     widget.viewerControl.updatePointSize(gPointSize);
     _updatePointCloud(gPcloudReadPCD);
   }
 
+  /// Decreases the point size (with a minimum of 1.0) and refreshes the view.
   void decreasePointSize() {
     gPointSize--;
     if (gPointSize < 1.0) {
@@ -237,6 +247,7 @@ class _ViewScreenState extends State<ViewScreen> {
 
   final _key = GlobalKey<ScaffoldState>();
 
+  /// Builds the viewer UI: app bar, sidebar, and interactive 3D canvas.
   @override
   Widget build(BuildContext context) {
     List<SidebarXItem> gSideBarItems = [

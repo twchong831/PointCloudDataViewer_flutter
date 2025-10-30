@@ -9,8 +9,10 @@ import 'package:ditredi/src/painter/model/model_3d_painter.dart';
 import 'package:flutter/widgets.dart';
 import 'package:vector_math/vector_math_64.dart';
 
-/// Draws a [DiTreDi] data on a [Canvas].
-/// Shouldn't be used directly, use [DiTreDi] instead.
+/// Draws a [DiTreDi] scene on a Canvas.
+///
+/// This is a customized painter focused on point cloud rendering stability
+/// and z-index handling. Use via [CustomPaint] rather than directly.
 class DiTreDiModelPainterCustom extends CustomPainter
     with ChangeNotifier
     implements PaintViewPort {
@@ -32,6 +34,7 @@ class DiTreDiModelPainterCustom extends CustomPainter
   var _zIndex = Float32List(0);
   late PriorityQueue _priorityQueue;
 
+  /// Shared paint used for vertex drawing.
   final Paint _vPaint = Paint()..isAntiAlias = true;
   final DiTreDiConfig _config;
 
@@ -95,6 +98,8 @@ class DiTreDiModelPainterCustom extends CustomPainter
   /////////////////////////
   final matrix = Matrix4.zero();
 
+  /// Applies camera transforms and assembles vertices/colors, then draws
+  /// either flat or z-index-sorted geometry based on config.
   @override
   void paint(Canvas canvas, Size size) {
     canvas.save();
@@ -121,6 +126,7 @@ class DiTreDiModelPainterCustom extends CustomPainter
 
     matrix.setIdentity();
 
+    // Optional perspective projection; tweak focal length via m[3][2].
     if (_config.perspective) matrix.setEntry(3, 2, -0.001);
 
     matrix
@@ -159,6 +165,7 @@ class DiTreDiModelPainterCustom extends CustomPainter
     canvas.restore();
   }
 
+  /// Draws triangles directly from the assembled buffers (no z-sorting).
   void _drawFlat(Canvas canvas) {
     canvas.drawVertices(
       Vertices.raw(
@@ -171,6 +178,7 @@ class DiTreDiModelPainterCustom extends CustomPainter
     );
   }
 
+  /// Draws triangles using z-index order by rebuilding compact buffers.
   void _drawWithZIndex(Canvas canvas) {
     _priorityQueue.clear();
     for (var i = 0; i < _zIndex.length; i++) {
@@ -209,6 +217,7 @@ class DiTreDiModelPainterCustom extends CustomPainter
     );
   }
 
+  /// Computes world bounds and updates model scale for consistent view fit.
   void _setupBounds(List<Model3D<dynamic>> figures, Aabb3? bounds) {
     if (figures.isEmpty) return;
 
