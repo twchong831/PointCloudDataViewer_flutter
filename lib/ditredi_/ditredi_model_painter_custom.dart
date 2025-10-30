@@ -11,7 +11,7 @@ import 'package:vector_math/vector_math_64.dart';
 
 /// Draws a [DiTreDi] data on a [Canvas].
 /// Shouldn't be used directly, use [DiTreDi] instead.
-class KModelPainter extends CustomPainter
+class DiTreDiModelPainterCustom extends CustomPainter
     with ChangeNotifier
     implements PaintViewPort {
   static const _dimension = 2;
@@ -35,8 +35,8 @@ class KModelPainter extends CustomPainter
   final Paint _vPaint = Paint()..isAntiAlias = true;
   final DiTreDiConfig _config;
 
-  /// Creates a [KModelPainter].
-  KModelPainter(
+  /// Creates a [DiTreDiModelPainterCustom].
+  DiTreDiModelPainterCustom(
     this.figures,
     Aabb3? bounds,
     this.controller,
@@ -270,5 +270,5 @@ class KModelPainter extends CustomPainter
   }
 
   @override
-  bool shouldRepaint(KModelPainter oldDelegate) => _isDirty;
+  bool shouldRepaint(DiTreDiModelPainterCustom oldDelegate) => _isDirty;
 }

@@ -15,3 +15,16 @@ ios/Flutter ios/Podfile ios/Runner ios/Runner.xcodeproj ios/Runner.xcworkspace
 windows/CMakeLists.txt windows/flutter windows/runner
 windows/
 log/
+.dart_tool/
+
+# Flutter/Dart generated and IDE files
+.flutter-plugins
+.flutter-plugins-dependencies
+.idea/
+*.iml
+.packages
+.pub/
+.pub-cache/
+coverage/
+Thumbs.db
+*.log

@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:ditredi/ditredi.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pointcloud_data_viewer/ditredi_/karnavi_canvas_model_painter.dart';
+import 'package:pointcloud_data_viewer/ditredi_/ditredi_model_painter_custom.dart';
 import 'package:pointcloud_data_viewer/ditredi_/model/gird_3d.dart';
 import 'package:pointcloud_data_viewer/ditredi_/model/guid_axis_3d.dart';
 import 'package:pointcloud_data_viewer/ditredi_/model/point_cloud_3d.dart';
@@ -64,7 +64,7 @@ class _ViewScreenState extends State<ViewScreen> {
   List<Point3D> gPcloudReadPCD = [];
 
   // painter for 3D visualization using ditredi
-  KModelPainter? gModelPainter;
+  DiTreDiModelPainterCustom? gModelPainter;
 
   // set viewPoint Start
   final Aabb3 gBounds = Aabb3.minMax(Vector3(-10, 0, 0), Vector3(10, 15, 0));
@@ -163,7 +163,7 @@ class _ViewScreenState extends State<ViewScreen> {
       // printError('Please Resetting parameters');
     }
     // init gModelPainter
-    gModelPainter = KModelPainter(
+    gModelPainter = DiTreDiModelPainterCustom(
       visualObjs,
       gBounds,
       widget._ditreControl,

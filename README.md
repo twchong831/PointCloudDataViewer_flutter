@@ -21,7 +21,7 @@ This Flutter project is Point Cloud Data(PCD) Visualizer.
 ## 1.3. Package List
 
 1. [ditredi](https://pub.dev/packages/ditredi)
-   1. kanavi_canvas_model_painter : customizing because of memory leak when point cloud updated
+   1. ditredi_model_painter_custom : customizing because of memory leak when point cloud updated
    2. [vector_math](https://pub.dev/packages/vector_math)
 2. [file_picker](https://pub.dev/packages/file_picker)
 3. [path_provider](https://pub.dev/packages/path_provider)
